@@ -48,7 +48,6 @@ public class FragmentSunday extends Fragment {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i <jsonArray.length(); i++) {
-
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         routineItems.add(new RoutineItem(jsonObject.getString("time"),
                                 jsonObject.getString("lecture"),
