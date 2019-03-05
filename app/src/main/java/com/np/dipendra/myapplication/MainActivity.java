@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<List<Modal>> call, Response<List<Modal>> response) {
                 if (response.isSuccessful()) {
-                    String UserName = response.body().get(0).getUserName();
+                    String UserName = response.body().get(0).getSname();
                     textViewUserName.setText(UserName);
                 }
             }
