@@ -38,11 +38,13 @@
     <string name="forget_password">Forget Password?</string>
     <string name="dhangadhi_engineering_college">Dhangadhi Engineering College</string>
     <string name="not_me">Not Me?</string>
-    <string name="confirm">Confirm</string>
+    <string name="confirm">Register</string>
     <string name="confirm_pass">Confirm Password</string>
     <string name="pass">New Password</string>
     <string name="user_name">Student Name</string>
     <string name="student_program">Program</string>
     <string name="continue_sid">Continue</string>
+    <string name="email">Email Address</string>
+    <string name="registered">Already Registered?</string>
 
 </resources>

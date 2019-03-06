@@ -20,15 +20,17 @@ public class SharedPrefManager {
     private static Context mCtx;
 
     public SharedPrefManager(Context context) {
-        mCtx=context;
+        mCtx = context;
     }
-    public static synchronized SharedPrefManager getInstance(Context context){
-        if(mInstance==null){
-            mInstance=new SharedPrefManager(context);
+
+    public static synchronized SharedPrefManager getInstance(Context context) {
+        if (mInstance == null) {
+            mInstance = new SharedPrefManager(context);
 
         }
         return mInstance;
     }
+
     public void userLogin(Modal modal) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -51,8 +53,8 @@ public class SharedPrefManager {
                 sharedPreferences.getString(KEY_SID, null),
                 sharedPreferences.getString(KEY_SNAME, null),
                 sharedPreferences.getString(KEY_SFACULTY, null),
-                sharedPreferences.getString(KEY_SEMAIL,null),
-                sharedPreferences.getString(KEY_SPASS,null)
+                sharedPreferences.getString(KEY_SEMAIL, null),
+                sharedPreferences.getString(KEY_SPASS, null)
         );
     }
 

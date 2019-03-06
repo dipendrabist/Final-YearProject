@@ -22,10 +22,17 @@ public class Modal {
     @SerializedName("semai")
     @Expose
     private String semail;
+
     public Modal(int id, String sid, String sname, String spass, String sfaculty, String semail) {
     }
 
     public Modal(String sid) {
+    }
+
+    public Modal(String sid, String semail) {
+    }
+
+    public Modal(String sid, String sname, String sfaculty) {
     }
 
     public String getId() {
@@ -67,6 +74,7 @@ public class Modal {
     public void setSfaculty(String sfaculty) {
         this.sfaculty = sfaculty;
     }
+
     public String getSemail() {
         return semail;
     }

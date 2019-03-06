@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -20,6 +21,7 @@ public class CheckSIDActivity extends AppCompatActivity {
     private EditText editTextSid;
     private Button buttonContinue;
     private ProgressBar progressBar;
+    private TextView textViewRegistered;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +29,17 @@ public class CheckSIDActivity extends AppCompatActivity {
         setContentView(R.layout.check_sid);
         editTextSid = findViewById(R.id.sid_check);
         buttonContinue = findViewById(R.id.continue_button);
+        textViewRegistered = findViewById(R.id.already_registered);
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkSID();
+            }
+        });
+        textViewRegistered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CheckSIDActivity.this, LoginActivity.class));
             }
         });
     }
@@ -50,7 +59,7 @@ public class CheckSIDActivity extends AppCompatActivity {
                 RequestHandler requestHandler = new RequestHandler();
                 HashMap<String, String> params = new HashMap<>();
                 params.put("sid", sid);
-                return requestHandler.sendPostRequest(URLs.URL_REGISTER, params);
+                return requestHandler.sendPostRequest(URLs.URL_CHECK_SID, params);
             }
 
             @Override
@@ -70,25 +79,32 @@ public class CheckSIDActivity extends AppCompatActivity {
                     if (!object.getBoolean("error")) {
                         Toast.makeText(getApplicationContext(), object
                                 .getString("message"), Toast.LENGTH_SHORT).show();
-
-                        JSONObject jsonObject = object.getJSONObject("student");
+                        JSONObject jsonObject = object.getJSONObject("user");
                         Modal modal = new Modal(
-                                jsonObject.getString("sid")
+                                jsonObject.getString("sid"),
+                                jsonObject.getString("sname"),
+                                jsonObject.getString("sfaculty")
                         );
-                        finish();
-                        Intent intent=new Intent(getApplicationContext(),RegisterPasswordActivity.class);
+
+                        Intent intent = new Intent(getApplicationContext(), RegisterPasswordActivity.class);
+                        intent.putExtra("sid", jsonObject.getString("sid"));
+                        intent.putExtra("sname", jsonObject.getString("sname"));
+                        intent.putExtra("sfaculty", jsonObject.getString("sfaculty"));
                         startActivity(intent);
+                        finish();
+
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
 
                     }
                 } catch (JSONException e) {
-e.printStackTrace();
+                    e.printStackTrace();
                 }
+
             }
         }
-        CheckSID checkSID=new CheckSID();
+        CheckSID checkSID = new CheckSID();
         checkSID.execute();
     }
 }

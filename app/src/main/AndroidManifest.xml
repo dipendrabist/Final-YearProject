@@ -17,10 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RegisterPasswordActivity" />
         <activity
             android:name=".TabActivityMain"
             android:label="@string/title_activity_tab_main" />
+        <activity android:name=".RegisterPasswordActivity"/>
+        <activity android:name=".LoginActivity"/>
         <activity
             android:name=".CheckSIDActivity"
             android:label="@string/app_name"
